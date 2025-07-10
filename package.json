@@ -1,0 +1,54 @@
+{
+  "name": "logslazy",
+  "version": "1.0.1",
+  "description": "A structured JSON logger for Node.js with local console and Datadog production support",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "node test-environments.js"
+  },
+  "keywords": [
+    "logger",
+    "json",
+    "bunyan",
+    "datadog",
+    "structured-logging",
+    "nodejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/logger/issues"
+  },
+  "homepage": "https://github.com/your-username/logger#readme",
+  "dependencies": {
+    "bunyan": "^1.8.15",
+    "nano-time": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/bunyan": "^1.8.11",
+    "@types/node": "^24.0.12",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
