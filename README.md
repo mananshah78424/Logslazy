@@ -28,10 +28,11 @@ export default logger;
 ```
 
 ## Use Logslazy
+```javascript
 logger.info('Hello how are you doing?', {
         name: data.name,
 });
-
+```
 
 ## Log Output Structure
 
