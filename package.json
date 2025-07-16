@@ -1,6 +1,7 @@
 {
   "name": "logslazy",
-  "version": "1.0.1",
+  "version": "1.0.8",
+  "type": "module",
   "description": "A structured JSON logger for Node.js with local console and Datadog production support",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -29,16 +30,16 @@
     "structured-logging",
     "nodejs"
   ],
-  "author": "Your Name",
+  "author": "Manan",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/logger.git"
+    "url": "git+https://github.com/mananshah78424/Logslazy.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/logger/issues"
+    "url": "https://github.com/mananshah78424/Logslazy/issues"
   },
-  "homepage": "https://github.com/your-username/logger#readme",
+  "homepage": "https://github.com/mananshah78424/Logslazy#readme",
   "dependencies": {
     "bunyan": "^1.8.15",
     "nano-time": "^1.0.0"

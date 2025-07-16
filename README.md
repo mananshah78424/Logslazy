@@ -20,63 +20,18 @@ npm install logslazy
 ## Quick Start
 
 ```javascript
-const { Logger } = require('logslazy');
+import { Logger } from 'logslazy';
 
-// Auto-detects environment
-const logger = Logger.createLogger({ name: 'my-app' });
+const logger = new Logger('poseidon');
 
-logger.info('User logged in', { userId: 123, ip: '192.168.1.1' });
-logger.error('Database connection failed', { database: 'users', retryCount: 3 });
+export default logger;
 ```
 
-## Environment Configuration
-
-### Local Development
-```bash
-NODE_ENV=development
-# (no DATADOG_ENABLED or DD_ENV)
-```
-
-### Production (Datadog)
-```bash
-NODE_ENV=development
-DATADOG_ENABLED=true
-# or
-DD_ENV=production
-```
-
-## API
-
-### Logger.createLogger(options)
-Creates a logger that auto-detects the environment.
-
-```javascript
-const logger = Logger.createLogger({
-  name: 'my-app',
-  level: 'info',
-  release: 'v1.0.0'
+## Use Logslazy
+logger.info('Hello how are you doing?', {
+        name: data.name,
 });
-```
 
-### Logger.createLocalLogger(options)
-Creates a logger configured for local development (DEBUG level).
-
-### Logger.createProductionLogger(options)
-Creates a logger configured for production (INFO level).
-
-### Log Methods
-
-```javascript
-logger.trace('Trace message', { data: 'value' });
-logger.debug('Debug message', { userId: 123 });
-logger.info('Info message', { requestId: 'abc-123' });
-logger.warn('Warning message', { deprecated: true });
-logger.error('Error message', { statusCode: 500 });
-logger.fatal('Fatal message', { critical: true });
-
-// Special error logging
-logger.logError(error, 'Custom error message');
-```
 
 ## Log Output Structure
 
@@ -103,6 +58,78 @@ logger.logError(error, 'Custom error message');
 | `level` | string | 'info' | Log level (trace, debug, info, warn, error, fatal) |
 | `release` | string | process.env.RELEASE \|\| 'none' | Release version |
 | `streams` | Bunyan.Stream[] | undefined | Custom output streams |
+
+## Publishing to npm
+
+### Prerequisites
+
+1. **npm account**: Make sure you have an npm account and are logged in
+2. **Package ownership**: Ensure you own the `logslazy` package name on npm
+
+### Publishing Steps
+
+#### 1. Build the package
+```bash
+npm run build
+```
+
+#### 2. Test the build (recommended)
+```bash
+npm test
+```
+
+#### 3. Login to npm (if not already logged in)
+```bash
+npm login
+```
+
+#### 4. Check what will be published
+```bash
+npm pack --dry-run
+```
+
+#### 5. Publish to npm
+```bash
+npm publish
+```
+
+### Version Management
+
+For subsequent releases, increment the version number before publishing:
+
+#### Patch version (bug fixes)
+```bash
+npm version patch  # 1.0.8 → 1.0.9
+npm publish
+```
+
+#### Minor version (new features)
+```bash
+npm version minor  # 1.0.8 → 1.1.0
+npm publish
+```
+
+#### Major version (breaking changes)
+```bash
+npm version major  # 1.0.8 → 2.0.0
+npm publish
+```
+
+### Publishing Workflow
+
+1. **Make your changes** to the codebase
+2. **Test locally**: `npm test`
+3. **Build**: `npm run build`
+4. **Increment version**: `npm version [patch|minor|major]`
+5. **Publish**: `npm publish`
+6. **Push to GitHub**: `git push && git push --tags`
+
+### Important Notes
+
+- The `prepublishOnly` script automatically runs `npm run build` before publishing
+- Only files specified in the `"files"` field of `package.json` are included in the published package
+- Version increments automatically create a git tag
+- Make sure your git repository is up to date before publishing
 
 ## License
 
